@@ -3,18 +3,18 @@
 matrix:
   include:
     - os: osx
+      language: generic
       env: PYTHON_VERSION=2.7
       install:
         - pyenv install "${PYTHON_VERSION}-dev"
         - pyenv global "${PYTHON_VERSION}-dev"
         - pip install mock coverage ipdb ipython pytest pre-commit autopep8 flake8
     - os: trusty
-      env: PYTHON_VERSION=2.7
+      python: "2.7"
       install:
-        - pyenv install "${PYTHON_VERSION}-dev"
-        - pyenv global "${PYTHON_VERSION}-dev"
         - pip install mock coverage ipdb ipython pytest pre-commit autopep8 flake8
     - os: windows
+      language: shell
       install:
         - choco install -y python2
         - C:\Python27\Scripts\pip.exe install virtualenv
