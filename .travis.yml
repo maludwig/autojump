@@ -4,13 +4,20 @@ matrix:
   include:
     - os: osx
       env: PYTHON_VERSION=2.7
+      install:
+        - pyenv install "${PYTHON_VERSION}-dev"
+        - pyenv global "${PYTHON_VERSION}-dev"
+        - pip install mock coverage ipdb ipython pytest pre-commit autopep8 flake8
     - os: trusty
       env: PYTHON_VERSION=2.7
-
-install:
-  - pyenv install "${PYTHON_VERSION}-dev"
-  - pyenv global "${PYTHON_VERSION}-dev"
-  - pip install mock coverage ipdb ipython pytest pre-commit autopep8 flake8
+      install:
+        - pyenv install "${PYTHON_VERSION}-dev"
+        - pyenv global "${PYTHON_VERSION}-dev"
+        - pip install mock coverage ipdb ipython pytest pre-commit autopep8 flake8
+    - os: windows
+      install:
+        - choco install -y python2
+        - C:\Python27\Scripts\pip.exe install virtualenv
 
 script:
   - coverage run --source=bin/ --omit=bin/autojump_argparse.py -m py.test -vv -rxs --tb native -s --strict
