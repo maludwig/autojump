@@ -21,6 +21,7 @@ matrix:
 script:
   - env
   - pip install virtualenv virtualenvwrapper
+  - source "$(which virtualenv.sh)"
   - mkvirtualenv autojump
   - pip install mock coverage ipdb ipython pytest pre-commit autopep8 flake8
   - coverage run --source=bin/ --omit=bin/autojump_argparse.py -m py.test -vv -rxs --tb native -s --strict
