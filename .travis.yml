@@ -8,7 +8,6 @@ matrix:
       install:
         - pyenv install "${PYTHON_VERSION}-dev"
         - pyenv global "${PYTHON_VERSION}-dev"
-        - pip install virtualenv
     - python: "2.7"
       install:
         - pip install virtualenv
@@ -18,10 +17,11 @@ matrix:
         - choco install -y python2
         - env
         - ls -la /
-        - /C/Python27/Scripts/pip.exe install virtualenv
+        # - /C/Python27/Scripts/pip.exe install virtualenv
 script:
-  - virtualenv $HOME/venv
-  - source $HOME/venv/Scripts/activate
+  - env
+  - pip install virtualenv virtualenvwrapper
+  - mkvirtualenv autojump
   - pip install mock coverage ipdb ipython pytest pre-commit autopep8 flake8
   - coverage run --source=bin/ --omit=bin/autojump_argparse.py -m py.test -vv -rxs --tb native -s --strict
   - coverage report -m
