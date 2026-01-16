@@ -1,4 +1,4 @@
-if [[ -z $AUTOJUMP_SOURCED ]]; then
+if [[ "$(type -t j)" != "function" ]]; then
   export AUTOJUMP_SOURCED=1
 
   # Script include
